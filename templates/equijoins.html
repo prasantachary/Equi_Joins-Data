@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table{
+            background: papayawhip;
+            text-align: center;
+            font-size: bold;
+            text-decoration: solid;
+        }
+        th{
+            color: orangered;
+            font-weight: bold;
+        }
+        td{
+            color: brown;
+        }
+    </style>
 </head>
 <body>
     <center>
-        <h1>EQUI JOINS</h1>
+        <h1>EQUI JOINS TABLE</h1>
         <table border="5px">
             <tr>
-                <th>empno</th>
-                <th>ename</th>
-                <th>job</th>
-                <th>mgr</th>
-                <th>hiredate</th>
-                <th>sal</th>
-                <th>comm</th>
-                <th>deptno</th>
-                <th>dname</th>
-                <th>dlocation</th>
+                <th>EMPNO</th>
+                <th>ENAME</th>
+                <th>JOB</th>
+                <th>MGR</th>
+                <th>HIREDATE</th>
+                <th>SAL</th>
+                <th>COMM</th>
+                <th>DEPT NO</th>
+                <th>DNAME</th>
+                <th>DLOCATION</th>
             </tr>
 
             {% for emp in EMPOBJECTS %}

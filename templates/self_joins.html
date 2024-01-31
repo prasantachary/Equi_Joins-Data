@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            background: papayawhip;
+            text-align: center;
+            font-size: bold;
+            text-decoration: solid;
+        }
+        th{
+            color: orangered;
+            font-weight: bold;
+        }
+        td{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>SELF JOINS TABLE</h1>
+        <table border="4px">
+            <tr>
+                <th>EMPNO</th>
+                <th>ENAME</th>
+                <th>JOB</th>
+                <th>MGR</th>
+                <th>HIREDATE</th>
+                <th>SAL</th>
+                <th>COMM</th>
+
+                {% for emp in empmgrobjcets %}
+                    <tr>
+                        <td>{{emp.empno}}</td>  
+                        <td>{{emp.ename}}</td>
+                        <td>{{emp.job}}</td>
+                        <td>{{emp.mgr.ename}}</td>
+                        <td>{{emp.hiredate}}</td>
+                        <td>{{emp.sal}}</td>
+                        <td>{{emp.comm}}</td>         
+                        
+                    </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
