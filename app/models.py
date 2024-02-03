@@ -28,4 +28,3 @@ class SalGrade(models.Model):
     hisal=models.DecimalField(max_digits=10,decimal_places=2)
 
 
-    

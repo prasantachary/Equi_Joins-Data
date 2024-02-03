@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
+from django.db.models import Q
 
 # Create your views here.
 from app.models import *
@@ -54,3 +55,40 @@ def self_joins(request):
     
     d={'empmgrobjcets':empmgrobjcets}
     return render(request,'self_joins.html',d)
+
+def emp_mgr_dept(request):
+    EMD=Emp.objects.select_related('deptno','mgr').all()
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename='MARTIN')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(deptno__dname='RESEARCH')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(deptno__dname='ACCOUNTING')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(deptno__dname='SALES')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(deptno__dname='OPERATIONS')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(mgr__isnull=True)
+    EMD=Emp.objects.select_related('deptno','mgr').filter(mgr__isnull=False)
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='RESEARCH')| Q(deptno__dname='SALES'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='ACCOUNTING')| Q(deptno__dname='JONES'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='SALES')| Q(deptno__dname='KING'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='SALES')| Q(deptno__dname='SCOTT'))
+    EMD=Emp.objects.select_related('deptno','mgr').all()[:5:]
+    EMD=Emp.objects.select_related('deptno','mgr').all()[1:5:]
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(ename__startswith='S')| Q(ename__endswith='S'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(ename__startswith='A')| Q(ename__endswith='A'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(ename__startswith='R')| Q(ename__endswith='R'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__regex=r'JO')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__regex=r'SC')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__startswith='S')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__startswith='K')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__startswith='M')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__endswith='S')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__endswith='K')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(ename__endswith='R')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(deptno__dname__startswith='S')
+    EMD=Emp.objects.select_related('deptno','mgr').filter(mgr__isnull=False)
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='RESEARCH')| Q(deptno__dname='MARTIN'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='ACCOUNTING')| Q(deptno__dname='CLERK'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='SALES')| Q(deptno__dname='FORD'))
+    EMD=Emp.objects.select_related('deptno','mgr').filter(Q(deptno__dname='SALES')| Q(deptno__dname='TURNER'))
+
+
+    d={'EMD':EMD}
+    return render(request,'emp_mgr_dept.html',d)
